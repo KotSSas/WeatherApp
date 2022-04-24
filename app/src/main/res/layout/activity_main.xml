@@ -7,6 +7,7 @@
     android:background="@drawable/back"
     android:paddingTop="15dp"
     android:paddingBottom="15dp"
+    android:id="@+id/mainLayout"
     android:scrollbarSize="30sp"
     tools:context=".MainActivity">
 

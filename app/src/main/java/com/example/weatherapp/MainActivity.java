@@ -1,6 +1,7 @@
 package com.example.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
 import android.app.DownloadManager;
@@ -24,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        changeBackground();
         Objects.requireNonNull(getSupportActionBar()).hide();
         imageView = findViewById(R.id.imageView);
         country = findViewById(R.id.country);
@@ -53,6 +56,42 @@ public class MainActivity extends AppCompatActivity {
         pressure = findViewById(R.id.t_pressure);
         wspeed = findViewById(R.id.t_wspeed);
         getCityName();
+    }
+
+    private void changeBackground() {
+        Calendar c = Calendar.getInstance();
+        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+
+        ConstraintLayout homeLayout = findViewById(R.id.mainLayout);
+        if(timeOfDay >= 8 && timeOfDay < 16){
+            //day
+            homeLayout.setBackgroundResource(R.drawable.day);
+
+        }else if(timeOfDay >= 16 && timeOfDay < 20){
+            //afternoon
+            homeLayout.setBackgroundResource(R.drawable.sunset);
+
+
+        }else if(timeOfDay >= 20 && timeOfDay < 24){
+            //night
+            homeLayout.setBackgroundResource(R.drawable.night);
+
+
+        }else if(timeOfDay>=0 && timeOfDay<4){
+            //night
+            homeLayout.setBackgroundResource(R.drawable.back);
+
+
+        }
+
+        else if(timeOfDay >= 4 && timeOfDay < 8){
+
+            //dawn
+            homeLayout.setBackgroundResource(R.drawable.dawn);
+
+
+        }
+
     }
 
     private void getCityName() {
