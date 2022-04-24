@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,13 +32,12 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "ff";
     ImageView imageView;
     TextView country, city, temp;
-
+    String s;
     TextView latitude,longtitude,humidity,sunrise,sunset,pressure,wspeed;
     City cityC = new City();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,41 @@ public class MainActivity extends AppCompatActivity {
         sunset = findViewById(R.id.t_sunset);
         pressure = findViewById(R.id.t_pressure);
         wspeed = findViewById(R.id.t_wspeed);
-        getCityName();
+        checkFirstRun();
+    }
+    private void checkFirstRun() {
+
+        final String PREFS_NAME = "MyPrefsFile";
+        final String PREF_VERSION_CODE_KEY = "version_code";
+        final int DOESNT_EXIST = -1;
+
+        // Get current version code
+        int currentVersionCode = BuildConfig.VERSION_CODE;
+
+        // Get saved version code
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        int savedVersionCode = prefs.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST);
+
+        // Check for first run or upgrade
+        if (currentVersionCode == savedVersionCode) {
+            // This is just a normal run
+            return;
+
+        } else if (savedVersionCode == DOESNT_EXIST) {
+            // TODO This is a new install (or the user cleared the shared preferences)
+
+
+            getCityName();
+
+        } else if (currentVersionCode > savedVersionCode) {
+            // TODO This is an upgrade
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+            findWeather(sharedPreferences.getString("city","roetgen"));
+
+
+        }
+        prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply();
     }
 
     private void getCityName() {
@@ -64,9 +100,14 @@ public class MainActivity extends AppCompatActivity {
         alert.setView(input);
 
         alert.setPositiveButton("Ok", (dialog, whichButton) -> {
-            String s = input.getText().toString();
-            cityC.setName(s);
-            findWeather(cityC.name);
+            s= input.getText().toString();
+            cityC.setName(cityC.name);
+            findWeather(s);
+
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("city",s);
+            editor.apply();
         });
         alert.setNegativeButton("Cancel", (dialog, whichButton) -> {
            finish();
