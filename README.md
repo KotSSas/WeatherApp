@@ -1,19 +1,19 @@
-# Weather App
+# Weather App🌡☁
+![Untitled-1](https://user-images.githubusercontent.com/51232472/165050700-cbba8d36-c859-47d3-8516-9375ede95b37.png)
 
-## Description
+## ⚪Description ⚪
 
 This app is really simple which allows you to get weather and more data about weather in your town or city.
 ## What information can you get:
 
-![photo_2022-04-25_11-16-38](https://user-images.githubusercontent.com/51232472/165050076-b72a258c-ae8f-47d0-b726-7a5c60d7705a.jpg)
 
-- Latitude: e.g. `46.4` (example)
-- Longitude: e.g. `30.7`  (example)
-- Humidity: e.g. `78` (example)
-- Sunrise: e.g. `165000` (example)
-- Sunset: e.g. `145000` (example)
-- Pressure: e.g. `1012 hPa` (example)
-- Wind speed: e.g. `3.7 km/h` (example)
+- 1️⃣Latitude: e.g. `46.4` (example)
+- 2️⃣Longitude: e.g. `30.7`  (example)
+- 3️⃣Humidity: e.g. `78` (example)
+- 4️⃣Sunrise: e.g. `165000` (example)
+- 5️⃣Sunset: e.g. `145000` (example)
+- 6️⃣Pressure: e.g. `1012 hPa` (example)
+- 7️⃣Wind speed: e.g. `3.7 km/h` (example)
 
 ## Contributing
 
