@@ -5,13 +5,15 @@
 This app is really simple which allows you to get weather and more data about weather in your town or city.
 ## What information can you get:
 
-- Latitude: e.g. `46.4`
-- Longitude: e.g. `30.7` 
-- Humidity: e.g. `78`
-- Sunrise: e.g. `165000`
-- Sunset: e.g. `145000`
-- Pressure: e.g. `1012 hPa`
-- Wind speed: e.g. `3.7 km/h`
+![photo_2022-04-25_11-16-38](https://user-images.githubusercontent.com/51232472/165050076-b72a258c-ae8f-47d0-b726-7a5c60d7705a.jpg)
+
+- Latitude: e.g. `46.4` (example)
+- Longitude: e.g. `30.7`  (example)
+- Humidity: e.g. `78` (example)
+- Sunrise: e.g. `165000` (example)
+- Sunset: e.g. `145000` (example)
+- Pressure: e.g. `1012 hPa` (example)
+- Wind speed: e.g. `3.7 km/h` (example)
 
 ## Contributing
 
